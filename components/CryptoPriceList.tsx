@@ -4,6 +4,7 @@ import { contractsConfig } from "../utils/contractsConfig"
 
 const CryptoPriceList = () => {
   const [prices, setPrices] = useState<{ [key: string]: LatestRoundData | null }>({})
+  const [nextUpdateTime, setNextUpdateTime] = useState<number>(60)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,16 +21,34 @@ const CryptoPriceList = () => {
       setPrices(newPrices)
     }
 
-    fetchData()
+    const interval = setInterval(() => {
+      setNextUpdateTime((prevTime) => {
+        if (prevTime === 0) {
+          fetchData()
+          return 60
+        } else {
+          return prevTime - 1
+        }
+      })
+    }, 1000)
 
-    const interval = setInterval(fetchData, 60000)
+    fetchData()
 
     return () => clearInterval(interval)
   }, [])
 
+  const formatTime = (time: number): string => {
+    const minutes = Math.floor(time / 60)
+    const seconds = time % 60
+    return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`
+  }
+
   return (
     <div>
       <h1>ERC20 tokens price</h1>
+      <div>
+        <p>Next price update in: {formatTime(nextUpdateTime)}</p>
+      </div>
       {contractsConfig.map((contract) => (
         <div key={contract.name}>
           <h2>{contract.name}</h2>
