@@ -45,13 +45,13 @@ const CryptoPriceList = () => {
 
   return (
     <div>
-      <h1>ERC20 tokens price</h1>
+      <h2>ERC20 tokens price</h2>
       <div>
         <p>Next price update in: {formatTime(nextUpdateTime)}</p>
       </div>
       {contractsConfig.map((contract) => (
         <div key={contract.name}>
-          <h2>{contract.name}</h2>
+          <h3>{contract.name}</h3>
           {prices[contract.name] ? <p>Price: {prices[contract.name]?.answer.toString()}</p> : <p>Loading...</p>}
         </div>
       ))}
