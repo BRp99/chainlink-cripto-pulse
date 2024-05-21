@@ -45,14 +45,14 @@ const CryptoPriceList = () => {
 
   return (
     <div>
-      <h2>ERC20 tokens price</h2>
       <div>
-        <p>Next price update in: {formatTime(nextUpdateTime)}</p>
+        <p className="font-poppins font-bold text-emerald-50">Next price update in: {formatTime(nextUpdateTime)}</p>
       </div>
       {contractsConfig.map((contract) => (
         <div key={contract.name}>
           <h3>{contract.name}</h3>
           {prices[contract.name] ? <p>Price: {prices[contract.name]?.answer.toString()}</p> : <p>Loading...</p>}
+          <img src={contract.icon} alt={"${contract.name} icon"} className="w-3em" />
         </div>
       ))}
     </div>
