@@ -1,6 +1,6 @@
 "use client"
 import CryptoPriceList from "../components/CryptoPriceList"
-import KIKI from "@/components/KIKI"
+import KIKI from "@/components/TokenCard"
 
 export default function Home() {
   return (

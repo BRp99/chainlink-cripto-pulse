@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { getLatestRoundData, LatestRoundData } from "../utils/ethers"
 import { contractsConfig } from "../utils/contractsConfig"
+import styles from "./CryptoPriceList.module.css"
+import TokenCard from "./TokenCard"
 
 const CryptoPriceList = () => {
   const [prices, setPrices] = useState<{ [key: string]: LatestRoundData | null }>({})
@@ -44,16 +46,25 @@ const CryptoPriceList = () => {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <div>
         <p className="font-poppins font-bold text-emerald-50">Next price update in: {formatTime(nextUpdateTime)}</p>
       </div>
-      {contractsConfig.map((contract) => (
-        <div key={contract.name}>
+      {/* {contractsConfig.map((contract) => (
+        <div key={contract.name} className={styles.tokens}>
           <h3>{contract.name}</h3>
           {prices[contract.name] ? <p>Price: {prices[contract.name]?.answer.toString()}</p> : <p>Loading...</p>}
           <img src={contract.icon} alt={"${contract.name} icon"} className="w-3em" />
         </div>
+      ))} */}
+      {contractsConfig.map((contract) => (
+        <TokenCard
+          key={contract.name}
+          name={contract.name}
+          price={prices[contract.name] ? prices[contract.name]?.answer.toString() || null : null}
+          icon={contract.icon}
+          sourceUrl={`https://github.com/nextui-org/nextui`}
+        />
       ))}
     </div>
   )
