@@ -57,15 +57,17 @@ const CryptoPriceList = () => {
           <img src={contract.icon} alt={"${contract.name} icon"} className="w-3em" />
         </div>
       ))} */}
-      {contractsConfig.map((contract) => (
-        <TokenCard
-          key={contract.name}
-          name={contract.name}
-          price={prices[contract.name] ? prices[contract.name]?.answer.toString() || null : null}
-          icon={contract.icon}
-          sourceUrl={`https://github.com/nextui-org/nextui`}
-        />
-      ))}
+      <div className={styles.tokenCard}>
+        {contractsConfig.map((contract) => (
+          <TokenCard
+            key={contract.name}
+            name={contract.name}
+            price={prices[contract.name] ? prices[contract.name]?.answer.toString() || null : null}
+            icon={contract.icon}
+            sourceUrl={`https://github.com/nextui-org/nextui`}
+          />
+        ))}
+      </div>
     </div>
   )
 }

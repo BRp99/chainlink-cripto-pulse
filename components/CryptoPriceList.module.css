@@ -1,8 +1,6 @@
-.container > :nth-child(2) {
-  /* outline: 1px solid red; */
-  display: flex;
-}
-
-.tokens {
-  outline: 1px solid yellow;
+.tokenCard {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  padding: 20px 150px;
 }
