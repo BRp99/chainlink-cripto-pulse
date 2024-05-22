@@ -13,14 +13,14 @@ export default function TokenCard({ name, price, icon, sourceUrl }: TokenCardPro
     <div>
       <Card className={`${styles.cardCustom} max-w-[400px] bg-indigo-900`}>
         <CardHeader className="flex gap-3">
-          <Image alt={`${name} logo`} height={40} radius="sm" src={icon} width={40} />
+          <Image alt={`${name} logo`} radius="sm" src={icon} className={styles.image} />
           <div className="flex flex-col">
             <p className="text-white font-semibold">{name}</p>
-            <p className="text-small text-default-500">{price ? `Price: ${price}` : "Loading..."}</p>
+            <p className="text-small text-default-300">{price ? `Price: ${price}` : "Loading..."}</p>
           </div>
         </CardHeader>
-        <Divider />
-        {/* <CardBody>
+        {/* <Divider />
+         <CardBody>
           <p>Make beautiful websites regardless of your design experience.</p>
         </CardBody>
         <Divider />

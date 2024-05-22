@@ -48,7 +48,7 @@ const CryptoPriceList = () => {
   return (
     <div className={styles.container}>
       <div>
-        <p className="font-poppins font-bold text-emerald-50">Next price update in: {formatTime(nextUpdateTime)}</p>
+        <p className=" text-emerald-50">Next price update in: {formatTime(nextUpdateTime)}</p>
       </div>
       {/* {contractsConfig.map((contract) => (
         <div key={contract.name} className={styles.tokens}>

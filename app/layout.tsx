@@ -1,9 +1,12 @@
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Barlow } from "@next/font/google"
 import "./globals.css"
 import { NextUIProvider } from "@nextui-org/react"
 
-const inter = Inter({ subsets: ["latin"] })
+const barlow = Barlow({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+})
 
 export const metadata: Metadata = {
   title: "ChainLink Crypto Pulse",
@@ -17,9 +20,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="bg-indigo-950">
-      <body className={inter.className}>
+      <body className={barlow.className}>
         <NextUIProvider>{children}</NextUIProvider>
       </body>
     </html>
   )
+}
+
+{
 }
