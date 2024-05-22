@@ -1,19 +1,11 @@
-.container > :nth-child(1),
-.container > :nth-child(2) {
+.container > :nth-child(1) {
   display: flex;
   justify-content: center;
 }
 
 .title {
-  /* font-family: "Poppins", sans-serif; */
   font-weight: bold;
-  font-size: 4em;
-}
-
-.subtitle {
-  /* font-family: "Poppins", sans-serif; */
-  /* font-weight: bold; */
-  font-size: 1.5em;
+  font-size: clamp(2rem, 5vw, 4rem);
 }
 
 .cryptoPriceList {

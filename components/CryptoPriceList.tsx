@@ -47,9 +47,8 @@ const CryptoPriceList = () => {
 
   return (
     <div className={styles.container}>
-      <div>
-        <p className=" text-emerald-50">Next price update in: {formatTime(nextUpdateTime)}</p>
-      </div>
+      <h2 className={`${styles.subtitle} text-emerald-100`}>ERC20 tokens price update: {formatTime(nextUpdateTime)}</h2>
+
       {/* {contractsConfig.map((contract) => (
         <div key={contract.name} className={styles.tokens}>
           <h3>{contract.name}</h3>
