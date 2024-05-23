@@ -15,3 +15,5 @@ export const getLatestRoundData = async (address: string, abi: string[]): Promis
   const price: LatestRoundData = await contract.latestRoundData()
   return price
 }
+
+export const formatUnits = ethers.utils.formatUnits

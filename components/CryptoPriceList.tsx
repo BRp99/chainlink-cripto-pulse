@@ -3,6 +3,8 @@ import { getLatestRoundData, LatestRoundData } from "../utils/ethers"
 import { contractsConfig } from "../utils/contractsConfig"
 import styles from "./CryptoPriceList.module.css"
 import TokenCard from "./TokenCard"
+import { formatUnits } from "../utils/ethers"
+import { ethers } from "ethers"
 
 const CryptoPriceList = () => {
   const [prices, setPrices] = useState<{ [key: string]: LatestRoundData | null }>({})
@@ -47,6 +49,11 @@ const CryptoPriceList = () => {
     return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`
   }
 
+  const getPrice = (price: LatestRoundData | null) => {
+    if (!price) return null
+    return formatUnits(price.answer || ethers.constants.Zero, 18)
+  }
+
   return (
     <div className={styles.container}>
       <h2 className={`${styles.subtitle} text-emerald-100`}>ERC20 tokens price update: {formatTime(nextUpdateTime)}</h2>
@@ -60,13 +67,7 @@ const CryptoPriceList = () => {
       ))} */}
       <div className={styles.tokenCard}>
         {contractsConfig.map((contract) => (
-          <TokenCard
-            key={contract.name}
-            name={contract.name}
-            price={prices[contract.name] ? prices[contract.name]?.answer.toString() || null : null}
-            icon={contract.icon}
-            loading={loading}
-          />
+          <TokenCard key={contract.name} name={contract.name} price={getPrice(prices[contract.name])} icon={contract.icon} loading={loading} />
         ))}
       </div>
     </div>
