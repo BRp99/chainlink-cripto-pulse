@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ChainLink Cripto Pulse
 
-## Getting Started
+This component fetches the latest data from smart contracts on Ethereum using the ethers.js library. It displays the name of the token, its current price relative to Ether (ETH), and an icon representing the token.
 
-First, run the development server:
+## Functionalities
+- Automatic price updates every 60 seconds.
+- Time indicator for next update.
+- Charging indicator display during data fetching.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Technologies Used
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Next.js
+- ethers.js
+- Next UI (for rendering the token cards and add Skeleton)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Learnings
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- During the development of this project, I gained valuable knowledge about integration with oracle contracts on Chainlink and the Ethereum blockchain. 
 
-## Learn More
+- To get up-to-date data on ERC20 token prices, I learned to query oracle contracts on Chainlink. These contracts connect my application to the Chainlink network, allowing me to access accurate and reliable crypto asset price data.
 
-To learn more about Next.js, take a look at the following resources:
+- During the development of this project, I learned how to use NextUI to style React components. Below are some of the things I learned and how I applied this knowledge to the project:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Reading NextUI Documentation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+To customize NextUI component styles, I learned to read the official NextUI documentation. Here are the steps I followed:
 
-## Deploy on Vercel
+1. I accessed the official NextUI documentation at [nextui.org](https://nextui.org/docs/getting-started/introduction).
+2. I browsed the documentation to find information about the components I wanted to customize.
+3. I learned about the properties available for each component and how to use them to modify styles.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Changing Card Component Styles
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+To change the styles of the NextUI `Card` component, I consulted the NextUI component stories repository at `nextui-packages-components-card-stories-card.stories.tsx`. I found the `withDividerTemplate` component and learned how to customize the card style with dividers.
+
+## Token Icon Font
+
+For the token icons displayed in this project, I used Cripto Logos, a platform that provides SVG icons for various cryptocurrencies and tokens. 
+
+Here is the link to Cripto Logos: [Cripto Logos](https://cryptologos.cc/)
+
+By using this platform, I was able to find high-quality icons for the selected tokens, which helped enrich the visual experience of the project.
+
+
+
+
