@@ -3,10 +3,12 @@ import { getLatestRoundData, LatestRoundData } from "../utils/ethers"
 import { contractsConfig } from "../utils/contractsConfig"
 import styles from "./CryptoPriceList.module.css"
 import TokenCard from "./TokenCard"
+import { Skeleton } from "@nextui-org/react"
 
 const CryptoPriceList = () => {
   const [prices, setPrices] = useState<{ [key: string]: LatestRoundData | null }>({})
   const [nextUpdateTime, setNextUpdateTime] = useState<number>(60)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,6 +23,7 @@ const CryptoPriceList = () => {
         }
       }
       setPrices(newPrices)
+      setLoading(false)
     }
 
     const interval = setInterval(() => {
@@ -57,15 +60,19 @@ const CryptoPriceList = () => {
         </div>
       ))} */}
       <div className={styles.tokenCard}>
-        {contractsConfig.map((contract) => (
-          <TokenCard
-            key={contract.name}
-            name={contract.name}
-            price={prices[contract.name] ? prices[contract.name]?.answer.toString() || null : null}
-            icon={contract.icon}
-            sourceUrl={`https://github.com/nextui-org/nextui`}
-          />
-        ))}
+        {contractsConfig.map((contract) =>
+          loading ? (
+            <Skeleton key={contract.name} className="w-full h-24" />
+          ) : (
+            <TokenCard
+              key={contract.name}
+              name={contract.name}
+              price={prices[contract.name] ? prices[contract.name]?.answer.toString() || null : null}
+              icon={contract.icon}
+              sourceUrl={`https://github.com/nextui-org/nextui`}
+            />
+          )
+        )}
       </div>
     </div>
   )
