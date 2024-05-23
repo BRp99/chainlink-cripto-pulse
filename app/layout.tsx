@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Barlow } from "@next/font/google"
+import { Barlow } from "next/font/google"
 import "./globals.css"
 import { NextUIProvider } from "@nextui-org/react"
 
