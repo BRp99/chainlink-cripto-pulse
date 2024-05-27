@@ -56,22 +56,27 @@ const CryptoPriceList = () => {
     return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`
   }
 
-  const getPrice = (price: LatestRoundData | null) => {
+  const getPrice = (price: LatestRoundData | null, contractName: string) => {
     if (!price) return null
-    return formatUnits(price.answer || ethers.constants.Zero, 18)
-  }
 
-  // const getPriceWithDecimals = (price: LatestRoundData | null) => {
-  //   if (!price) return null
-  //   return formatUnits(price.answer || ethers.constants.Zero, price.decimals)
-  // }
+    const contractConfig = contractsConfig.find((contract) => contract.name === contractName)
+    const decimals = contractConfig ? contractConfig.decimals : 18
+
+    return formatUnits(price.answer || ethers.constants.Zero, decimals)
+  }
 
   return (
     <div className={styles.container}>
       <h2 className={`${styles.subtitle} text-emerald-100`}>ERC20 tokens price update: {formatTime(nextUpdateTime)}</h2>
       <div className={styles.tokenCard}>
         {contractsConfig.map((contract) => (
-          <TokenCard key={contract.name} name={contract.name} price={getPrice(prices[contract.name])} icon={contract.icon} loading={loading} />
+          <TokenCard
+            key={contract.name}
+            name={contract.name}
+            price={getPrice(prices[contract.name], contract.name)}
+            icon={contract.icon}
+            loading={loading}
+          />
         ))}
       </div>
     </div>

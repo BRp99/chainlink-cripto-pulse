@@ -6,6 +6,7 @@ export interface LatestRoundData {
   startedAt: ethers.BigNumber
   updatedAt: ethers.BigNumber
   answeredInRound: ethers.BigNumber
+  decimals: number //add
 }
 
 const provider = new ethers.providers.JsonRpcProvider("https://eth.merkle.io") //ChainList Provider
