@@ -10,9 +10,11 @@ const CryptoPriceList = () => {
   const [prices, setPrices] = useState<{ [key: string]: LatestRoundData | null }>({})
   const [nextUpdateTime, setNextUpdateTime] = useState<number>(60)
   const [loading, setLoading] = useState(true)
+  const [fetchingData, setFetchingData] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
+      setFetchingData(true)
       try {
         const promises = contractsConfig.map((contract) =>
           getLatestRoundData(contract.address, contract.abi).catch((error) => {
@@ -30,6 +32,7 @@ const CryptoPriceList = () => {
       } catch (error) {
         console.error("Error fetching data:", error)
       } finally {
+        setFetchingData(false)
         setLoading(false)
       }
     }
@@ -56,6 +59,14 @@ const CryptoPriceList = () => {
     return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`
   }
 
+  const renderTimer = () => {
+    if (fetchingData && !loading) {
+      return "Loading"
+    } else {
+      return formatTime(nextUpdateTime)
+    }
+  }
+
   const getPrice = (price: LatestRoundData | null, contractName: string) => {
     if (!price) return null
 
@@ -67,7 +78,8 @@ const CryptoPriceList = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={`${styles.subtitle} text-emerald-100`}>ERC20 tokens price update: {formatTime(nextUpdateTime)}</h2>
+      <h2 className={`${styles.subtitle} text-emerald-100`}>ERC20 tokens price update: {renderTimer()}</h2>
+      {/* ERC20 tokens price update: {formatTime(nextUpdateTime)} */}
       <div className={styles.tokenCard}>
         {contractsConfig.map((contract) => (
           <TokenCard
