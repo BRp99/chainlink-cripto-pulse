@@ -54,16 +54,19 @@ const CryptoPriceList = () => {
   }, [])
 
   const formatTime = (time: number): string => {
-    const minutes = Math.floor(time / 60)
-    const seconds = time % 60
-    return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`
+    const seconds = time % 10
+    return `${seconds.toString()}`
   }
 
   const renderTimer = () => {
     if (fetchingData && !loading) {
-      return "Loading"
     } else {
-      return formatTime(nextUpdateTime)
+      const time = formatTime(nextUpdateTime)
+      if (time === "0") {
+        return "Loading"
+      } else {
+        return `${time} seconds`
+      }
     }
   }
 
@@ -78,8 +81,10 @@ const CryptoPriceList = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={`${styles.subtitle} text-emerald-100`}>ERC20 tokens price update: {renderTimer()}</h2>
-      {/* ERC20 tokens price update: {formatTime(nextUpdateTime)} */}
+      <h2 className={`${styles.subtitle} text-emerald-100`}>
+        Price update in {renderTimer()}
+        {fetchingData && !loading && "seconds"}
+      </h2>{" "}
       <div className={styles.tokenCard}>
         {contractsConfig.map((contract) => (
           <TokenCard
