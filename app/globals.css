@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@keyframes shimmer {
+/* @keyframes shimmer {
   0% {
     background-position: -100%;
   }
@@ -13,4 +13,25 @@
 
 .skeleton-shimmer {
   animation: shimmer 3s infinite;
+} */
+
+@keyframes gradient-x {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 15s ease infinite;
+}
+
+.bg-gradient-to-r {
+  background-image: linear-gradient(to right, #000000, #1a1a1a, #001f3f);
 }

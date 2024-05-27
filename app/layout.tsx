@@ -19,13 +19,16 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="bg-indigo-950">
+    <html
+      lang="en"
+      className=" fixed inset-0 bg-gradient-to-r from-black via-gray-900 to-blue-900 animate-gradient-x
+    "
+    >
       <body className={barlow.className}>
         <NextUIProvider>{children}</NextUIProvider>
       </body>
     </html>
   )
 }
-
-{
-}
+// bg-indigo-950
+// from-purple-600 via-pink-500 to-red-500 animate-gradient-x

@@ -81,10 +81,14 @@ const CryptoPriceList = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={`${styles.subtitle} text-emerald-100`}>
-        Price update in {renderTimer()}
-        {fetchingData && !loading && "seconds"}
-      </h2>{" "}
+      <div className={styles.subcontainer}>
+        <button className="bg-white">Update price now</button>
+        <h2 className={`${styles.subtitle} text-emerald-100`}>
+          Price update in {renderTimer()}
+          {fetchingData && !loading && "seconds"}
+        </h2>
+      </div>
+
       <div className={styles.tokenCard}>
         {contractsConfig.map((contract) => (
           <TokenCard
